@@ -49,7 +49,7 @@
                 <!-- Page Content -->
                 <div id="page-content-wrapper">
           
-                  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
                     <a class="navbar-brand" href="#">Myra Tracker</a>
                     <button
                       class="navbar-toggler"
@@ -157,17 +157,16 @@
                         </li>
                       </ul>
                       <form class="form-inline my-2 my-lg-0">
+                          <!-- hid this search box -->
                         <input
-                          class="form-control mr-sm-2"
+                          class="form-control mr-sm-2 d-none"
                           type="search"
                           placeholder="Search"
-                          aria-label="Search"
-                        />
+                          aria-label="Search"/>
                         <button
-                          class="btn btn-outline-success my-2 my-sm-0"
+                          class="btn btn-outline-danger my-2 my-sm-0"
                           type="submit"
-                        >
-                          Search
+                        >Logout
                         </button>
                       </form>
                     </div>
@@ -190,14 +189,41 @@
                       <div class="container">
                         <div class="jumbotron">
                           <div class="row align-items-center">
-                            <div class="col-sm">
-                              One of three columns
+                            <div class="col-sm">                              
+                                One of three columns
+                                    <div class="card" style="width: 18rem;">
+                                            <div class="card-body">
+                                              <h5 class="card-title">Card title</h5>
+                                              <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                              <a href="#" class="card-link">Card link</a>
+                                              <a href="#" class="card-link">Another link</a>
+                                            </div>
+                                          </div>
                             </div>
                             <div class="col-sm">
                               One of three columns
+                              <div class="card" style="width: 18rem;">
+                                    <div class="card-body">
+                                      <h5 class="card-title">Card title</h5>
+                                      <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                      <a href="#" class="card-link">Card link</a>
+                                      <a href="#" class="card-link">Another link</a>
+                                    </div>
+                                  </div>
                             </div>
                             <div class="col-sm">
                               One of three columns
+                              <div class="card" style="width: 18rem;">
+                                    <div class="card-body">
+                                      <h5 class="card-title">Card title</h5>
+                                      <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                      <a href="#" class="card-link">Card link</a>
+                                      <a href="#" class="card-link">Another link</a>
+                                    </div>
+                                  </div>
                             </div>
                           </div>
                         </div>
@@ -232,6 +258,29 @@
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
       });
+
+      const firebaseConfig = {
+  apiKey: "AIzaSyBHn7CvUWOlsb8bcllmJf26oKuYlg-8iD0",
+  authDomain: "myratracker.firebaseapp.com",
+  databaseURL: "https://myratracker.firebaseio.com",
+  projectId: "myratracker",
+  storageBucket: "myratracker.appspot.com",
+  messagingSenderId: "963863783283",
+  appId: "1:963863783283:web:a7870808c47d3c64ad8706",
+  measurementId: "G-H29MTQ7S45"
+};
     </script>
+
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="/__/firebase/7.2.3/firebase-app.js"></script>
+<script src="/__/firebase/7.2.3/firebase-auth.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="/__/firebase/7.2.3/firebase-analytics.js"></script>
+
+<!-- Initialize Firebase -->
+<script src="/__/firebase/init.js"></script>
   </body>
 </html>
