@@ -32,3 +32,8 @@ const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`listening on port ${port}`))
 app.use(express.static('public'))
 app.use(express.json({ limit: "100kb" }));
+
+
+app.get('/test', (req, res) => {
+  res.send("Hey you send a request");
+})

@@ -14,214 +14,240 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"  />
+      crossorigin="anonymous"
+    />
+     <!-- update the version number as needed -->
+     <script src="/__/firebase/7.2.3/firebase-app.js"></script>
+     <!-- include only the Firebase features as you need -->
+     <script src="/__/firebase/7.2.3/firebase-auth.js"></script>
+     <script src="/__/firebase/7.2.3/firebase-database.js"></script>
   </head>
   <body>
-        <div class="d-flex" id="wrapper">
-                <!-- Sidebar -->
-                <div class="bg-light border-right" id="sidebar-wrapper">
-                  <div class="sidebar-heading">Myra Tracker</div>
-                  <div class="list-group list-group-flush">
-                    <a href="#" class="list-group-item list-group-item-action bg-light"
-                      >Dashboard</a
-                    >
-                    <a href="#" class="list-group-item list-group-item-action bg-light"
-                      >Todo</a
-                    >
-                    <a href="#" class="list-group-item list-group-item-action bg-light"
-                      >In Progress</a
-                    >
-                    <a href="#" class="list-group-item list-group-item-action bg-light"
-                      >Done</a
-                    >
-                    <a href="#" class="list-group-item list-group-item-action bg-light"
-                      >Backlog</a
-                    >
-                    <a href="#" class="list-group-item list-group-item-action bg-light"
-                      >Status</a
-                    >
-                  </div>
+    <div class="d-flex" id="wrapper">
+      <!-- Sidebar -->
+      <div class="bg-light border-right" id="sidebar-wrapper">
+        <div class="d-flex flex-row pt-2"> 
+          <div id="username-heading" class="sidebar-heading">Myra Tracker </div>
+          <div id="profileImg" >   </div>
+        </div>
+        <div class="list-group list-group-flush">
+          <a href="#" class="list-group-item list-group-item-action bg-light"
+            >Dashboard</a
+          >
+          <a
+            href="#"
+            class="list-group-item list-group-item-action bg-light"
+            onclick="goForIt()"
+            >Todo</a
+          >
+          <a href="#" class="list-group-item list-group-item-action bg-light"
+            >In Progress</a
+          >
+          <a href="#" class="list-group-item list-group-item-action bg-light"
+            >Done</a
+          >
+          <a href="#" class="list-group-item list-group-item-action bg-light"
+            >Backlog</a
+          >
+          <a href="#" class="list-group-item list-group-item-action bg-light"
+            >Status</a
+          >
+        </div>
+      </div>
+      <!-- /#sidebar-wrapper -->
+
+      <!-- Page Content -->
+      <div id="page-content-wrapper">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+          <a class="navbar-brand" href="#">Myra Tracker</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="#" onclick="userInfo()"
+                  >Home <span class="sr-only">(current)</span></a
+                >
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  Dropdown</a
+                >
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Something else here</a>
                 </div>
-                <!-- /#sidebar-wrapper -->
-          
-                <!-- Page Content -->
-                <div id="page-content-wrapper">
-          
-                  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-                    <a class="navbar-brand" href="#">Myra Tracker</a>
-                    <button
-                      class="navbar-toggler"
-                      type="button"
-                      data-toggle="collapse"
-                      data-target="#navbarSupportedContent"
-                      aria-controls="navbarSupportedContent"
-                      aria-expanded="false"
-                      aria-label="Toggle navigation"
-                    >
-                      <span class="navbar-toggler-icon"></span>
-                    </button>
-          
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                      <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                          <a class="nav-link" href="#"
-                            >Home <span class="sr-only">(current)</span></a
-                          >
-                        </li>
-                        <li class="nav-item dropdown">
-                          <a
-                            class="nav-link dropdown-toggle"
-                            href="#"
-                            id="navbarDropdown"
-                            role="button"
-                            data-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="false"
-                          >
-                            Dropdown</a
-                          >
-                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                          </div>
-                        </li>
-                        <li class="nav-item">
-                          <button
-                            type="button"
-                            class="btn btn-outline-warning"
-                            data-toggle="modal"
-                            data-target="#exampleModal"
-                          > Create Ticket
+              </li>
+              <li class="nav-item">
+                <!-- Modal -->
+
+                <!-- modal end -->
+              </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+              <!-- hid this search box -->
+              <input
+                class="form-control mr-sm-2 d-none"
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+              />
+              <div class="btn-group"> 
+              <button class="btn btn-group-sm btn-outline-primary btn" onclick="googleLogin()" >
+                Login
+              </button>
+              <button
+                class="btn btn-outline-danger my-2 my-sm-0"
+                type="submit"
+                onclick="signOut()"
+              >
+                Sign Out
+              </button> </div>
+            </form>
+          </div>
+        </nav>
+        <div class="container-fluid">
+          <div class="container">
+            <div class="jumbotron bg-transparent">
+              <h1 class="display-4">Task Queue</h1>
+              <p id="lead-header" class="lead">
+                Create a new task, then track the progress of the task through completion.
+              </p>
+              <!-- modal button  -->
+
+              <!-- end modal button  -->
+
+              <div id="createTicketVue" class="input-group input-group-lg mb-3">
+                <div class="input-group-prepend">
+                  <select
+                    v-model="selected"
+                    class=" btn btn-lg btn-warning"
+                    id="inputGroupSelect01"
+                  >
+                    <option disabled value="" selected>Status</option>
+                    <option value="1">To Do</option>
+                    <option value="2">In Progress</option>
+                    <option value="3">Done</option>
+                  </select>
+                </div>
+                <input
+                  v-model="title"
+                  placeholder="Wash clothes. . ."
+                  type=""
+                  class="form-control"
+                  aria-label="Text input with dropdown button"
+                />
+                <button
+                  v-on:click="vueTicketCreater"
+                  class="btn btn-warning input-group-append"
+                  type="button"
+                >Save & Create
+                </button>
+              </div>
+
+              <!-- start Vue el -->
+              <div id="ticketCard">
+                <hr class="my-3" />
+                <div class="container">
+                  <div class="jumbotron bg-light">
+                    <div class="row align-items-start">
+                      
+                      <div class="col-sm" >
+                        <button 
+                        class="btn btn-danger">
+                          To Do
+                          <span class=" badge badge-success badge-pill">
+                            
+                          </span> 
+                          
                         </button>
-                          <!-- Modal -->
-                          <div
-                            class="modal fade"
-                            id="exampleModal"
-                            tabindex="-1"
-                            role="dialog"
-                            aria-labelledby="exampleModalLabel"
-                            aria-hidden="true"
-                          >
-                            <div class="modal-dialog" role="document">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <h5 class="modal-title" id="exampleModalLabel">
-                                    Create Ticket
-                                  </h5>
-                                  <button
-                                    type="button"
-                                    class="close"
-                                    data-dismiss="modal"
-                                    aria-label="Close"
-                                  >
-                                    <span aria-hidden="true">&times;</span>
-                                  </button>
-                                </div>
-                                <div class="modal-body">
-                                  <input
-                                    class="form-control form-control-md"
-                                    type="text"
-                                    placeholder="Title"
-                                  />
-                                </div>
-                                <div class="modal-footer">
-                                  <div class="form-group">
-                                    <label for="exampleFormControlTextarea1"
-                                      >Discription</label
-                                    >
-                                    <textarea
-                                      class="form-control"
-                                      id="exampleFormControlTextarea1"
-                                      rows="3"
-                                    ></textarea>
-                                  </div>
-                                  <button type="button" class="btn btn-primary">
-                                    Save & Create
-                                  </button>
-                                  <button
-                                    type="button"
-                                    class="btn btn-secondary"
-                                    data-dismiss="modal"
-                                  >
-                                    Close
-                                  </button>
-                                </div>
+
+                        <div v-for="(item, index) in tickets">
+                          <div v-if="item.status == 'To Do' ">
+                            <div v:if="show" class="card rounded" style="width: 18rem;">
+                              <div class="card-body">
+                                <h5 class="card-title">{{ item.title }}</h5>
+                                <span class="badge badge-pill badge-danger btn-group-sm">
+                                  {{ item.status }}
+                                </span>
+                                <button
+                                  v-on:click="updateStatus(index, item.keyIndex)"
+                                  class="btn btn-sm btn-warning"
+                                >
+                                  In Progress=>
+                                </button>
                               </div>
                             </div>
                           </div>
-                        <!-- modal end -->
-                        </li>
-                      </ul>
-                      <form class="form-inline my-2 my-lg-0">
-                          <!-- hid this search box -->
-                        <input
-                          class="form-control mr-sm-2 d-none"
-                          type="search"
-                          placeholder="Search"
-                          aria-label="Search"/>
-                        <button
-                          class="btn btn-outline-danger my-2 my-sm-0"
-                          type="submit"
-                        >Logout
+                        </div>
+                      </div>
+
+                      <div class="col-sm">
+                        <button class="btn btn-warning">
+                          In Progress
+                          <span class=" badge badge-info"></span>
                         </button>
-                      </form>
-                    </div>
-                  </nav>
-                <div class="container-fluid">
-                  <div class="container">
-                    <div class="jumbotron">
-                      <h1 class="display-4">Task Queue</h1>
-                      <p class="lead">This is some helpful text for you to read</p>
-                        <!-- modal button  -->
-                      <button class="btn btn-warning"
-                      type="button"
-                      class="btn btn-outline-warning"
-                      data-toggle="modal"
-                      data-target="#exampleModal"
-                      >Create Ticket</button>
-                      <!-- end modal button  -->
-          
-                      <hr class="my-3" />
-                      <div class="container">
-                        <div class="jumbotron">
-                          <div class="row align-items-center">
-                            <div class="col-sm">                              
-                                One of three columns
-                                    <div class="card" style="width: 18rem;">
-                                            <div class="card-body">
-                                              <h5 class="card-title">Card title</h5>
-                                              <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                              <a href="#" class="card-link">Card link</a>
-                                              <a href="#" class="card-link">Another link</a>
-                                            </div>
-                                          </div>
+
+                        <div v-for="(item, index) in tickets">
+                          <div v-if="item.status == 'In Progress' ">
+                            <div class="card" style="width: 18rem;">
+                              <div class="card-body">
+                                <h5 class="card-title">{{ item.title }}</h5>
+                                <span class="badge badge-pill badge-warning">
+                                  {{ item.status }}
+                                </span>
+                                <button
+                                  v-on:click="updateStatus(index, item.keyIndex)"
+                                  class="btn btn-sm btn-success"
+                                >
+                                  Done=>
+                                </button>
+                              </div>
                             </div>
-                            <div class="col-sm">
-                              One of three columns
-                              <div class="card" style="width: 18rem;">
-                                    <div class="card-body">
-                                      <h5 class="card-title">Card title</h5>
-                                      <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                      <a href="#" class="card-link">Card link</a>
-                                      <a href="#" class="card-link">Another link</a>
-                                    </div>
-                                  </div>
-                            </div>
-                            <div class="col-sm">
-                              One of three columns
-                              <div class="card" style="width: 18rem;">
-                                    <div class="card-body">
-                                      <h5 class="card-title">Card title</h5>
-                                      <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                      <a href="#" class="card-link">Card link</a>
-                                      <a href="#" class="card-link">Another link</a>
-                                    </div>
-                                  </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-sm">
+                        <button class="btn btn-success">
+                          Done
+                          <span class=" badge badge-info"></span>
+                        </button>
+                        <div v-for="(item, index) in tickets">
+                          <div v-if="item.status == 'Done' ">
+                            <div class="card" style="width: 18rem;">
+                              <div class="card-body">
+                                <h5 class="card-title">{{ item.title }}</h5>
+                                <span class="badge badge-pill badge-success">
+                                  {{ item.status }}
+                                </span>
+                                
+                                   <button
+                                  v-on:click="archiveIt(index, item.keyIndex)"
+                                  class="btn btn-sm btn-outline-light">
+                                  🗄
+                                </button>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -229,9 +255,16 @@
                     </div>
                   </div>
                 </div>
-                <!-- /#page-content-wrapper -->
+                <!-- end of Vue el -->
               </div>
-              <!-- /#wrapper -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- /#page-content-wrapper -->
+    <!-- /#wrapper -->
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -251,19 +284,19 @@
       crossorigin="anonymous"
     ></script>
 
+    <!-- vue js script for testing -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
 
-    <script src="app.js" >  </script>
-    <script src="auth.js"> </script>
+    <!-- <script defer src="/__/firebase/7.2.3/firebase-messaging.js"></script> -->
+    <script defer src="/__/firebase/7.2.3/firebase-storage.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
 
- <!-- update the version number as needed -->
- <script defer src="/__/firebase/7.2.3/firebase-app.js"></script>
- <!-- include only the Firebase features as you need -->
- <script defer src="/__/firebase/7.2.3/firebase-auth.js"></script>
- <script defer src="/__/firebase/7.2.3/firebase-database.js"></script>
- <script defer src="/__/firebase/7.2.3/firebase-messaging.js"></script>
- <script defer src="/__/firebase/7.2.3/firebase-storage.js"></script>
- <!-- initialize the SDK after all desired features are loaded -->
- <script defer src="/__/firebase/init.js"></script>
+    <script defer src="app.js"></script>
+    <script defer src="view.js"></script>
+    <script defer src="auth.js"></script>
+
+
   </body>
 </html>
