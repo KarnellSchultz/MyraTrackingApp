@@ -10,15 +10,20 @@ let userProfile = {};
 firebase.auth().onAuthStateChanged(function(user) {
   if (user != null) {
     setUserProfileInfo(user);
+    init()
   }
 });
 
-window.addEventListener("`", async event => {
-  // setUserProfileInfo();
+// window.addEventListener("DocumentContentLoaded", async event => {
+//   // setUserProfileInfo();
+
+// });
+function init() {
   let database = firebase.database();
   let ref = database.ref("tickets");
   ref.on("value", gotData, errData);
-});
+}
+
 
 //setting username and profile image
 let leadHeader = document.getElementById("lead-header"); // adding username to the page at login
@@ -57,6 +62,7 @@ async function createNewTicket(tempTitleText, tempBodyText, tempStatus) {
 }
 
 function storeTicket(tempTicketData, profile) {
+  console.log(tempTicketData, 'this is it fam')
   let database = firebase.database();
   let tickets = database.ref("tickets/" + uid);
   tempTicketData.profile = userProfile;
@@ -73,10 +79,12 @@ function storeTicket(tempTicketData, profile) {
 
 function gotData(data) {
   try {
+    console.log('this is GOTDATA')
     const dbTickets = data.val();
     // Grab the keys to iterate over the object
     let u = firebase.auth().currentUser.uid;
     userSpecificTickets.push(dbTickets[u]);
+    console.log(userSpecificTickets)
     addNewTicketToVue();
   } catch (error) {
     console.log("No user logged in. Log in to use this app");

@@ -6,18 +6,19 @@ let createTicketVue = new Vue({
       selected: '1'
     },
     methods: {
-            vueTicketCreater: async function() {
+            vueTicketCreater: function() {
                 if(this.title == '') {
                     alert("Enter a title before submitting a new ticket")
                 } else {
                 console.log(this.title, this.body)
                 if(this.selected == 1) {
+                    console.log("todoticketmade")
                     this.selected = "To Do"
                 } else if (this.selected == 2) {
                     this.selected = "In Progress"
                 } else {this.selected = "Done"}
 
-                await createNewTicket(this.title, this.body, this.selected)
+                createNewTicket(this.title, this.body, this.selected)
 
                 this.title = ""
                 this.selected = 1;
@@ -43,7 +44,7 @@ let createTicketVue = new Vue({
       },
       methods: {
         updateStatus: function(index, tempKeyIndex) {
-
+            console.log("logging when updateStatus is clicked")
             if (this.tickets[index].status == 'To Do' ) {
                 this.tickets[index].status = "In Progress"
                 console.log( this.tickets[index].status, 'before')
@@ -68,6 +69,7 @@ let createTicketVue = new Vue({
 
 async function addNewTicketToVue() {
     clearVue();
+    console.log(userSpecificTickets)
 try {
     let keys = Object.keys(userSpecificTickets[0]); //gets only tickets that are made by the logged in user. 
     console.log(keys)
