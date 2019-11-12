@@ -75,7 +75,7 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item active">
-                <a class="nav-link" href="#" onclick="userInfo()"
+                <a class="nav-link" href="#" onclick=""
                   >Home <span class="sr-only">(current)</span></a
                 >
               </li>
@@ -171,13 +171,11 @@
                 <div class="container">
                   <div class="jumbotron bg-light">
                     <div class="row align-items-start">
-                      
-                      <div class="col-sm" >
+                      <div class="col-sm-4" >
                         <button 
                         class="btn btn-danger">
                           To Do
                           <span class=" badge badge-success badge-pill">
-                            
                           </span> 
                           
                         </button>
@@ -186,10 +184,10 @@
                           <div v-if="item.status == 'To Do' ">
                             <div v:if="show" class="card rounded" style="width: 18rem;">
                               <div class="card-body">
-                                <h5 class="card-title">{{ item.title }}</h5>
                                 <span class="badge badge-pill badge-danger btn-group-sm">
                                   {{ item.status }}
                                 </span>
+                                <h5 class="card-title">{{ item.title }}</h5>
                                 <button
                                   v-on:click="updateStatus(index, item.keyIndex)"
                                   class="btn btn-sm btn-warning"
@@ -202,7 +200,7 @@
                         </div>
                       </div>
 
-                      <div class="col-sm">
+                      <div class="col-sm-4">
                         <button class="btn btn-warning">
                           In Progress
                           <span class=" badge badge-info"></span>
@@ -212,10 +210,10 @@
                           <div v-if="item.status == 'In Progress' ">
                             <div class="card" style="width: 18rem;">
                               <div class="card-body">
-                                <h5 class="card-title">{{ item.title }}</h5>
                                 <span class="badge badge-pill badge-warning">
                                   {{ item.status }}
                                 </span>
+                                <h5 class="card-title">{{ item.title }}</h5>
                                 <button
                                   v-on:click="updateStatus(index, item.keyIndex)"
                                   class="btn btn-sm btn-success"
@@ -228,7 +226,7 @@
                         </div>
                       </div>
 
-                      <div class="col-sm">
+                      <div class="col-sm-4">
                         <button class="btn btn-success">
                           Done
                           <span class=" badge badge-info"></span>
@@ -237,15 +235,14 @@
                           <div v-if="item.status == 'Done' ">
                             <div class="card" style="width: 18rem;">
                               <div class="card-body">
-                                <h5 class="card-title">{{ item.title }}</h5>
                                 <span class="badge badge-pill badge-success">
                                   {{ item.status }}
                                 </span>
-                                
+                                <h5 class="card-title">{{ item.title }}</h5>
                                    <button
                                   v-on:click="archiveIt(index, item.keyIndex)"
                                   class="btn btn-sm btn-outline-light">
-                                  🗄
+                                  🗂
                                 </button>
                               </div>
                             </div>

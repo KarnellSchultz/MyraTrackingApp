@@ -1,18 +1,5 @@
 
 
-// const firebaseConfig = {
-//   apiKey: "AIzaSyBHn7CvUWOlsb8bcllmJf26oKuYlg-8iD0",
-//   authDomain: "myratracker.firebaseapp.com",
-//   databaseURL: "https://myratracker.firebaseio.com",
-//   projectId: "myratracker",
-//   storageBucket: "myratracker.appspot.com",
-//   messagingSenderId: "963863783283",
-//   appId: "1:963863783283:web:a7870808c47d3c64ad8706",
-//   measurementId: "G-H29MTQ7S45"
-// };
-
-// firebase.initializeApp(firebaseConfig);
-
 document.addEventListener("DOMContentLoaded", async event => {
 
 

@@ -12,18 +12,19 @@ let createTicketVue = new Vue({
                 } else {
                 console.log(this.title, this.body)
                 if(this.selected == 1) {
-                    console.log("todoticketmade")
                     this.selected = "To Do"
                 } else if (this.selected == 2) {
                     this.selected = "In Progress"
-                } else {this.selected = "Done"}
-
-                createNewTicket(this.title, this.body, this.selected)
-
-                this.title = ""
-                this.selected = 1;
+                } else if (this.selected == 3) {
+                    this.selected = "Done"
+                } else {
+                    alert(`You've selected a incorrect option. Try again`)
                 }
 
+                createNewTicket(this.title, this.body, this.selected)
+                this.title = "";
+                this.selected = 1;
+                }
             }
     }
   })

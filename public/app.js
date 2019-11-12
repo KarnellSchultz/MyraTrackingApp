@@ -1,7 +1,4 @@
-// $("#menu-toggle").click(function(e) {
-//   e.preventDefault();
-//   $("#wrapper").toggleClass("toggled");
-// });
+
 
 let name, email, photoUrl, uid, emailVerified, profileData;
 let userSpecificTickets = [];
@@ -14,10 +11,7 @@ firebase.auth().onAuthStateChanged(function(user) {
   }
 });
 
-// window.addEventListener("DocumentContentLoaded", async event => {
-//   // setUserProfileInfo();
 
-// });
 function init() {
   let database = firebase.database();
   let ref = database.ref("tickets");
