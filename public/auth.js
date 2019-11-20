@@ -1,10 +1,4 @@
 
-
-document.addEventListener("DOMContentLoaded", async event => {
-
-
-
-})
 function googleLogin() {
   const provider = new firebase.auth.GoogleAuthProvider();
 
@@ -21,7 +15,7 @@ function googleLogin() {
 function signOut() {
   firebase.auth().signOut().then(function() {
       console.log(`Signed Out`)
-      window.location.href = "/login.html" ;
+      window.location.href = "/logout.html" ;
     }).catch(function(error) {
       console.log(error)
     });

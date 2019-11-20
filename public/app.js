@@ -8,7 +8,7 @@ firebase.auth().onAuthStateChanged(function(user) {
   if (user != null) {
     setUserProfileInfo(user);
     init()
-  }
+  } 
 });
 
 
@@ -73,12 +73,11 @@ function storeTicket(tempTicketData, profile) {
 
 function gotData(data) {
   try {
-    console.log('this is GOTDATA')
     const dbTickets = data.val();
     // Grab the keys to iterate over the object
     let u = firebase.auth().currentUser.uid;
     userSpecificTickets.push(dbTickets[u]);
-    console.log(userSpecificTickets)
+    // console.log(userSpecificTickets)
     addNewTicketToVue();
   } catch (error) {
     console.log("No user logged in. Log in to use this app");
@@ -87,7 +86,6 @@ function gotData(data) {
 
 function writeUserTicketData(keyIndex, tempStatus) {
   console.log("Updating in the DB", tempStatus);
-  console.log("info", uid, keyIndex);
   firebase
     .database()
     .ref(`tickets/${uid}/${keyIndex}/`)
@@ -96,20 +94,31 @@ function writeUserTicketData(keyIndex, tempStatus) {
     });
 }
 
+function writeUserTicketTitleData(keyIndex, tempTitle) {
+  console.log(`Updating ticket title: ${tempTitle}.`);
+  firebase
+  .database()
+  .ref(`tickets/${uid}/${keyIndex}/`)
+  .update({
+    title: tempTitle
+  });
+}
+
 function errData(err) {
   console.log("Error!");
   console.log(err);
 }
 
 class Ticket {
-  constructor(username, title, body, status = "to-do") {
+  constructor(username, title, body, status = "to-do", edit = false) {
     this.username = username;
     this.title = title;
     this.body = body;
     this.status = status;
+    this.edit = edit
   }
   details() {
-    return `${this.username} ${this.title} ${this.body} ${this.status}`;
+    return `${this.username} ${this.title} ${this.body} ${this.status} ${this.edit}`;
   }
   updateStatus(newStatus) {
     this.status = newStatus;

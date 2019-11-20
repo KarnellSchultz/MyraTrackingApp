@@ -30,6 +30,7 @@ body {
   .modal-backdrop {
   z-index: -1;
   }
+
   
   @media (min-width: 768px) {
     #sidebar-wrapper {

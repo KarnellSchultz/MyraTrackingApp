@@ -20,7 +20,6 @@ let createTicketVue = new Vue({
                 } else {
                     alert(`You've selected a incorrect option. Try again`)
                 }
-
                 createNewTicket(this.title, this.body, this.selected)
                 this.title = "";
                 this.selected = 1;
@@ -33,39 +32,59 @@ let createTicketVue = new Vue({
   let ticketCard = new Vue({
       el: '#ticketCard',
       data: {
-          archived: false,
           tickets: [{
               title,
               body,
-              status
+              status,
+              edit:false
           }],
           archive: [{
 
-          }]
+          }],
+          ticketCounter: {
+              toDo: 0,
+              inProgress: 0,
+              done: 0
+          }
       },
       methods: {
         updateStatus: function(index, tempKeyIndex) {
-            console.log("logging when updateStatus is clicked")
             if (this.tickets[index].status == 'To Do' ) {
                 this.tickets[index].status = "In Progress"
-                console.log( this.tickets[index].status, 'before')
                 writeUserTicketData(tempKeyIndex, this.tickets[index].status)
-                console.log( this.tickets[index].status, 'after')
             } else {
                 this.tickets[index].status = "Done";
                 writeUserTicketData(tempKeyIndex, this.tickets[index].status)
             }
+        },
+        regressStatus: function(index, tempKeyIndex) {
+            if (this.tickets[index].status == 'Done' ) {
+                this.tickets[index].status = "In Progress"
+                writeUserTicketData(tempKeyIndex, this.tickets[index].status)
+            } else {
+                this.tickets[index].status = "To Do";
+                writeUserTicketData(tempKeyIndex, this.tickets[index].status)
+            }
+            // console.log(this.tickets[index].status)
         },
         archiveIt: function(index, tempKeyIndex) {
             console.log(index, tempKeyIndex)
             this.archive = true;
             this.tickets[index].status = 'archived';
             writeUserTicketData(tempKeyIndex, this.tickets[index].status)
-        }
+        },
+        shownToggle: function(index, tempKeyIndex) {
+           console.log(`show toggle`)
+           console.log('1-'+ this.tickets[index].edit, this.tickets[index].title);
+           this.tickets[index].edit ? this.tickets[index].edit = false : this.tickets[index].edit = true;
+           console.log(this.tickets[index].edit, this.tickets[index].title);
+        },
+        updateTicketTitleContent: function(index, tempKeyIndex) {
+            this.shownToggle(index);
+            writeUserTicketTitleData(tempKeyIndex, this.tickets[index].title)
+        }, 
       }
   })
-
-
 
 
 async function addNewTicketToVue() {
@@ -81,17 +100,17 @@ try {
         let vueTitle = userSpecificTickets[0][key].title;
         let vueBody = userSpecificTickets[0][key].body;
         let vueStatus = userSpecificTickets[0][key].status;
+        let vueEdit = userSpecificTickets[0][key].edit
 
-        ticketCard.tickets.push({keyIndex:key, title:vueTitle, body:vueBody, status:vueStatus})
+        ticketCard.tickets.push({keyIndex:key, title:vueTitle, body:vueBody, status:vueStatus, edit:vueEdit})
     }    
         userSpecificTickets = []; //clears the userSpecificTickets arr so that it can be used again next time this is called
         keys = [];
     } catch(err) {
     console.log('No Tickets yet. Vuew.js')
+    }
 }
 
-}
 function clearVue() {
     ticketCard.tickets = []
 }
-
