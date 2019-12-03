@@ -39,7 +39,7 @@ function setUserProfileInfo(user) {
     uid
   };
   FNAME = name.split(" ")[0];
-  usernameHeading.innerHTML = `<button class="badge badge-pill badge-primary "> ${FNAME} </button>`;
+  usernameHeading.innerHTML = `<button class="badge badge-pill badge-primary "> ${email} </button>`;
   profileImg.innerHTML = `<img id="profileImg" src=" ${photoUrl} " alt="user profile picture from google. it's presented in a circle" 
     class="rounded-circle"
     width="50"
