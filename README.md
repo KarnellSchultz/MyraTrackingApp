@@ -1,2 +1,8 @@
 # MyraTrackingApp
-Hack-Week project to create a issue tracking application. Inspired by Google keep/Jira and all that stuff. 
+
+Progress tracking application. 
+
+Live app here: https://myratracker.firebaseapp.com/login.html
+
+
+![](https://media.giphy.com/media/XFiuVjBamFRHy7IvGw/giphy.gif)
