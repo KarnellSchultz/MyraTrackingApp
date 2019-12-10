@@ -1,10 +1,10 @@
 # MyraTrackingApp
 
-Progress tracking application. 
-Hosted via firebase
-logins with Google
-Bootstrap
-Vue.js
+-Progress tracking application. 
+-Hosted via firebase
+-logins with Google
+-Bootstrap
+-Vue.js
 
 Why is it called Myra Tracking App? 
 Myra is Swedish for ant.  Ants are kind of bugs so it's kinda of a "Bug Tracking App". 
