@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Myra Tracker App</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="styles.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous" />
+     <!-- update the version number as needed -->
+     <script src="/__/firebase/7.2.3/firebase-app.js"></script>
+     <!-- include only the Firebase features as you need -->
+     <script src="/__/firebase/7.2.3/firebase-auth.js"></script>
+     <script src="/__/firebase/7.2.3/firebase-database.js"></script>
+  </head>
+  <body>
+    <div class="d-flex" id="wrapper">
+
+
+      <!-- Page Content -->
+      <div id="page-content-wrapper">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+          <div class="mr-2" id="profileImg"></div>
+          <div class="mr-3" id="username-heading" class="sidebar-heading">Not logged in </div>
+          <a class="navbar-brand" href="#">Myra Tracker</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="#" onclick=""
+                  > 🐜 <span class="sr-only">(current)</span></a
+                >
+              </li>
+              <li class="nav-item">
+                    <a name="Archive" id="" class="btn btn-outline-primary" href="./index.html" role="button">
+                        Tickets
+                        </a>
+              </li>
+            </ul>
+
+            <form class="form-inline my-2 my-lg-0">
+              <!-- hid this search box -->
+              <input
+                class="form-control mr-sm-2 d-none"
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+              />
+              <div class=""> 
+              
+                <button
+                class="btn btn-outline-danger my-2 my-sm-0"
+                type="submit"
+                onclick="signOut()"
+                >Sign Out
+                </button> 
+              </div>
+
+            </form>
+          </div>
+        </nav>
+        
+        <div class="container-fluid">
+          <div class="container">
+            <div class="jumbotron bg-transparent">
+              <h1 class="display-4"> 💾 Archived Tickets</h1>
+              <p id="lead-header" class="lead">
+                Page of Archived Tickets
+            </p>
+              <!-- modal button  -->
+
+              <!-- start Vue el -->
+              <div id="ticketCard">
+                <hr class="my-3" />
+                <div class="container">
+                  <div class="jumbotron bg-light">
+                    <div class=" ">
+                      <div class="" >
+                        <button 
+                        class="btn btn-dark">
+                        Archived Tickets
+                        <span class=" badge badge-success badge-pill"></span> 
+                      </button>
+                      
+                      <div v-for="(item, index) in tickets">
+                          <div v-if="item.status == 'archived' ">
+                            <div class="card rounded" style="width: 18rem;">
+                             
+                             <!-- start of cards body -->
+                              <div class="card-body">
+                                <span class="badge badge-pill badge-dark btn-group-sm">
+                                   {{ item.status }}
+                                </span>
+                                                                
+                                  <span v-if="item.edit">   
+                                    <div class="input-group mb-2">
+                                      <input v-model="item.title"
+                                        class="form-control"
+                                        placeholder="edit me . . . ">
+                                      <div class="input-group-append">
+                                      <button 
+                                        v-on:click="updateTicketTitleContent(index, item.keyIndex)" 
+                                        class="btn btn-sm btn-outline-primary">
+                                        💾Save
+                                      </button>
+                                      </div>
+                                    </div>
+                                  </span> 
+                                      <div v-else>  
+                                        <h5 class="card-title">{{ item.title }}</h5>
+                                      </div>
+                            </div>
+                            <!-- end of the cards body content -->
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- end of the col section -->
+
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- end of Vue el -->
+              </div>
+
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script> -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- vue js script for testing -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- production version, optimized for size and speed -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+
+
+    <!-- <script defer src="/__/firebase/7.2.3/firebase-messaging.js"></script> -->
+    <script defer src="/__/firebase/7.2.3/firebase-storage.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
+
+    <script defer src="app.js"></script>
+    <script defer src="view.js"></script>
+    <script defer src="auth.js"></script>
+
+
+  </body>
+</html>
