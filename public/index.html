@@ -128,23 +128,20 @@
                         To Do
                         <span class=" badge badge-success badge-pill"></span> 
                       </button>
-                      
                       <div v-for="(item, index) in tickets">
                           <div v-if="item.status == 'To Do' ">
-                            <div class="card rounded" style="width: 18rem;">
-                             
+
+                            <div
+                           
+                            > 
+                            <div id="draggableCard"
+                            draggable="true"
+                            ondragstart='onDragStart(event)' class="card rounded" style="width: 18rem;">
                              <!-- start of cards body -->
-                              <div id="draggableCard" draggable="true"
-                              ondragstart='onDragStart(event);'
-                              class="card-body"
-                              
-                              ondragover='onDragOver(event);'
-                              ondrop='onDrop(event);'
-                              >
+                              <div class="card-body">
                                 <span class="badge badge-pill badge-danger btn-group-sm">
                                    {{ item.status }}
                                 </span>
-
                                   <div class="d-flex justify-content-end" >  
                                     <button 
                                     v-on:click="shownToggle(index)" 
@@ -182,6 +179,8 @@
                             <!-- end of the cards body content -->
                               </div>
                             </div>
+
+                            </div>
                           </div>
                         </div>
                         <!-- end of the col section -->
@@ -194,14 +193,17 @@
 
                         <div v-for="(item, index) in tickets">
                           <div v-if="item.status == 'In Progress' ">
-                            <div class="card" style="width: 18rem;">
+                            <div 
+                            ondragover='onDragOver(event);'
+                            ondrop='onDrop(event);'
+                            class="card" style="width: 18rem;">
                               <div class="card-body">
                                 <span class="badge badge-pill badge-warning">
                                   {{ item.status }}
                                 </span>
 
                                 <div class="d-flex justify-content-end" >  
-                                    <button 
+                                    <button
                                     v-on:click="shownToggle(index)" 
                                     class="btn btn-sm btn-outline-info" >
                                      ✏️Edit

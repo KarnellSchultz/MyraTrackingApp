@@ -136,10 +136,11 @@ function onDrop(event) {
     const dropzone = event.target;
 
     dropzone.appendChild(draggableElement);
-    event.backgroundColor = '#ffff'
+    event.backgroundColor = '#FFF8DC'
     event.dataTransfer.clearData();
 }
 
 function onDragOver(event) {
     event.preventDefault();
+    event.backgroundColor = "cornsilk"
 }
