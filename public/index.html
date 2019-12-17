@@ -134,7 +134,13 @@
                             <div class="card rounded" style="width: 18rem;">
                              
                              <!-- start of cards body -->
-                              <div class="card-body">
+                              <div id="draggableCard" draggable="true"
+                              ondragstart='onDragStart(event);'
+                              class="card-body"
+                              
+                              ondragover='onDragOver(event);'
+                              ondrop='onDrop(event);'
+                              >
                                 <span class="badge badge-pill badge-danger btn-group-sm">
                                    {{ item.status }}
                                 </span>
