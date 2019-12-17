@@ -113,6 +113,7 @@ try {
 
 function clearVue() {
     ticketCard.tickets = []
+<<<<<<< HEAD
 }
 
 
@@ -153,4 +154,6 @@ function onDragOver(event) {
     event.target.style.backgroundColor = "limegreen"
     event.preventDefault();
 
+=======
+>>>>>>> fb46f9e59021fbaf94a07b2d225e322c11831634
 }
