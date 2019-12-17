@@ -134,13 +134,15 @@
                             <div
                            
                             > 
-                            <div id="draggableCard"
+                            <div 
+                            :id="[item.keyIndex, index, 'draggableCard']"
                             draggable="true"
-                            ondragstart='onDragStart(event)' class="card rounded" style="width: 18rem;">
+                            ondragstart='onDragStart(event)' 
+                            class="card rounded" style="width: 18rem;">
                              <!-- start of cards body -->
                               <div class="card-body">
                                 <span class="badge badge-pill badge-danger btn-group-sm">
-                                   {{ item.status }}
+                                   {{ item.status }} 
                                 </span>
                                   <div class="d-flex justify-content-end" >  
                                     <button 
@@ -185,7 +187,10 @@
                         </div>
                         <!-- end of the col section -->
 
-                      <div class="col-sm-4">
+                      <div class="col-sm-4"
+                      ondragover='onDragOver(event);'
+                      ondrop='onDrop(event);'
+                      >
                         <button class="btn btn-warning">
                           In Progress
                           <span class=" badge badge-info"></span>
@@ -193,9 +198,7 @@
 
                         <div v-for="(item, index) in tickets">
                           <div v-if="item.status == 'In Progress' ">
-                            <div 
-                            ondragover='onDragOver(event);'
-                            ondrop='onDrop(event);'
+                            <div
                             class="card" style="width: 18rem;">
                               <div class="card-body">
                                 <span class="badge badge-pill badge-warning">
@@ -243,6 +246,11 @@
                                 </div>
                               </div>
                             </div>
+                            <div class="card-body"
+                            >
+
+                            </div
+                            >
                           </div>
                         </div>
                       </div>

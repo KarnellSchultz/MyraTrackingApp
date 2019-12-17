@@ -119,6 +119,10 @@ function clearVue() {
 
 
 function onDragStart(event) {
+    console.log( event.target.attributes.id.value)
+    let w = event.target.attributes.id.value.split(',')
+    let big = w[0];
+    let me = w[1];
     event
       .dataTransfer
       .setData('text/plain', event.target.id);
@@ -126,21 +130,27 @@ function onDragStart(event) {
     event
       .currentTarget
       .style
-      .backgroundColor = 'yellow';
+      .backgroundColor = 'grey';
+
+    //   ticketCard.updateStatus(me, big);
   }
 
 function onDrop(event) {
     const id = event.dataTransfer.getData('text');
+    
+    console.log(event.dataTransfer.getData('text'))
+    let elements = id.split(',');
+    console.log(elements[0], elements[1])
 
-    const draggableElement = document.getElementById(id);
-    const dropzone = event.target;
+    ticketCard.updateStatus(elements[1], elements[0]);
+    event.target.style.backgroundColor = "#FFFF"
 
-    dropzone.appendChild(draggableElement);
-    event.backgroundColor = '#FFF8DC'
     event.dataTransfer.clearData();
 }
 
 function onDragOver(event) {
+    console.log(event)
+    event.target.style.backgroundColor = "limegreen"
     event.preventDefault();
-    event.backgroundColor = "cornsilk"
+
 }
