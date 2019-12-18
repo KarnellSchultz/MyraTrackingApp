@@ -1,0 +1,29 @@
+[debug] [2019-12-17T14:57:54.597Z] ----------------------------------------------------------------------
+[debug] [2019-12-17T14:57:54.599Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
+[debug] [2019-12-17T14:57:54.599Z] CLI Version:   7.8.1
+[debug] [2019-12-17T14:57:54.599Z] Platform:      darwin
+[debug] [2019-12-17T14:57:54.599Z] Node Version:  v10.16.0
+[debug] [2019-12-17T14:57:54.600Z] Time:          Tue Dec 17 2019 15:57:54 GMT+0100 (Central European Standard Time)
+[debug] [2019-12-17T14:57:54.600Z] ----------------------------------------------------------------------
+[debug] [2019-12-17T14:57:54.600Z] 
+[debug] [2019-12-17T14:57:54.614Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-12-17T14:57:54.614Z] > authorizing via signed-in user
+[debug] [2019-12-17T14:57:54.614Z] [iam] checking project myratracker for permissions ["firebase.projects.get"]
+[debug] [2019-12-17T14:57:54.615Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2019-12-17T14:57:54.615Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2019-12-17T14:57:55.223Z] <<< HTTP RESPONSE 200
+[debug] [2019-12-17T14:57:55.250Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/myratracker:testIamPermissions  
+
+[debug] [2019-12-17T14:57:56.422Z] <<< HTTP RESPONSE 200
+[debug] [2019-12-17T14:57:56.423Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/myratracker  
+ 
+[debug] [2019-12-17T14:57:57.223Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/karnell.schultz/Documents/javaScript/bugTrackerApp'...
+[info] 
+[debug] [2019-12-17T14:57:57.225Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/myratracker/webApps/-/config  
+ 
+[debug] [2019-12-17T14:57:58.469Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] ✔  hosting: Local server: http://localhost:5000

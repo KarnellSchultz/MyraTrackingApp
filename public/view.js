@@ -113,7 +113,6 @@ try {
 
 function clearVue() {
     ticketCard.tickets = []
-<<<<<<< HEAD
 }
 
 
@@ -131,7 +130,7 @@ function onDragStart(event) {
     event
       .currentTarget
       .style
-      .backgroundColor = 'grey';
+      .backgroundColor = 'BurlyWood';
 
     //   ticketCard.updateStatus(me, big);
   }
@@ -144,16 +143,28 @@ function onDrop(event) {
     console.log(elements[0], elements[1])
 
     ticketCard.updateStatus(elements[1], elements[0]);
-    event.target.style.backgroundColor = "#FFFF"
+    event.target.style.backgroundColor = "white"
 
     event.dataTransfer.clearData();
 }
 
-function onDragOver(event) {
-    console.log(event)
-    event.target.style.backgroundColor = "limegreen"
-    event.preventDefault();
-
-=======
->>>>>>> fb46f9e59021fbaf94a07b2d225e322c11831634
+function onDragEnd(event) {
+    console.log("dragend")
+    event.target.style.backgroundColor = "white"
 }
+
+function onDragOver(event) {
+    event.preventDefault();
+    console.log(event)
+    event.target.style.backgroundColor = "cornsilk"
+
+}
+
+function dragInit() {
+    const el=document.getElementById('')
+    el.ondragenter = dragenter_handler;
+    el.ondragleave = dragleave_handler;
+    el.ondragend = dragend_handler;
+    el.ondragexit = dragexit_handler;
+}
+

@@ -134,9 +134,6 @@ class Ticket {
   }
   submitTicket() {}
 }
-<<<<<<< HEAD
 
 
 
-=======
->>>>>>> fb46f9e59021fbaf94a07b2d225e322c11831634

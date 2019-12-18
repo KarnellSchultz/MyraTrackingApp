@@ -128,7 +128,6 @@
                         To Do
                         <span class=" badge badge-success badge-pill"></span> 
                       </button>
-<<<<<<< HEAD
                       <div v-for="(item, index) in tickets">
                           <div v-if="item.status == 'To Do' ">
 
@@ -145,19 +144,6 @@
                                 <span class="badge badge-pill badge-danger btn-group-sm">
                                    {{ item.status }} 
                                 </span>
-=======
-                      
-                      <div v-for="(item, index) in tickets">
-                          <div v-if="item.status == 'To Do' ">
-                            <div class="card rounded" style="width: 18rem;">
-                             
-                             <!-- start of cards body -->
-                              <div class="card-body">
-                                <span class="badge badge-pill badge-danger btn-group-sm">
-                                   {{ item.status }}
-                                </span>
-
->>>>>>> fb46f9e59021fbaf94a07b2d225e322c11831634
                                   <div class="d-flex justify-content-end" >  
                                     <button 
                                     v-on:click="shownToggle(index)" 
@@ -195,23 +181,17 @@
                             <!-- end of the cards body content -->
                               </div>
                             </div>
-<<<<<<< HEAD
 
                             </div>
-=======
->>>>>>> fb46f9e59021fbaf94a07b2d225e322c11831634
                           </div>
                         </div>
                         <!-- end of the col section -->
 
-<<<<<<< HEAD
                       <div class="col-sm-4"
                       ondragover='onDragOver(event);'
                       ondrop='onDrop(event);'
+                      ondragend='onDragEnd(event)'
                       >
-=======
-                      <div class="col-sm-4">
->>>>>>> fb46f9e59021fbaf94a07b2d225e322c11831634
                         <button class="btn btn-warning">
                           In Progress
                           <span class=" badge badge-info"></span>
@@ -219,23 +199,15 @@
 
                         <div v-for="(item, index) in tickets">
                           <div v-if="item.status == 'In Progress' ">
-<<<<<<< HEAD
                             <div
                             class="card" style="width: 18rem;">
-=======
-                            <div class="card" style="width: 18rem;">
->>>>>>> fb46f9e59021fbaf94a07b2d225e322c11831634
                               <div class="card-body">
                                 <span class="badge badge-pill badge-warning">
                                   {{ item.status }}
                                 </span>
 
                                 <div class="d-flex justify-content-end" >  
-<<<<<<< HEAD
                                     <button
-=======
-                                    <button 
->>>>>>> fb46f9e59021fbaf94a07b2d225e322c11831634
                                     v-on:click="shownToggle(index)" 
                                     class="btn btn-sm btn-outline-info" >
                                      ✏️Edit
@@ -275,14 +247,11 @@
                                 </div>
                               </div>
                             </div>
-<<<<<<< HEAD
                             <div class="card-body"
                             >
 
                             </div
                             >
-=======
->>>>>>> fb46f9e59021fbaf94a07b2d225e322c11831634
                           </div>
                         </div>
                       </div>
