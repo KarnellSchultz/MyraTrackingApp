@@ -21,7 +21,7 @@
      <script src="/__/firebase/7.2.3/firebase-auth.js"></script>
      <script src="/__/firebase/7.2.3/firebase-database.js"></script>
   </head>
-  <body>
+  <body  >
     <div class="d-flex" id="wrapper">
 
 
@@ -122,7 +122,15 @@
                 <div class="container">
                   <div class="jumbotron bg-light">
                     <div class="row align-items-start">
-                      <div class="col-sm-4" >
+                      <div class="col-sm-4"
+                      ondrop='onDrop(event, "To Do");'
+                      ondragover='onDragOver(event);'
+                      ondragend='onDragEnd(event)'
+
+                      ondragenter='dragEnterHandler(event)'
+                      ondragleave='dragLeaveHandler(event)'
+
+                      >
                         <button 
                         class="btn btn-danger">
                         To Do
@@ -132,12 +140,16 @@
                           <div v-if="item.status == 'To Do' ">
 
                             <div
-                           
                             > 
                             <div 
-                            :id="[item.keyIndex, index, 'draggableCard']"
+                            :id="[item.keyIndex, index, 'draggableCard', 'toDo']"
                             draggable="true"
                             ondragstart='onDragStart(event)' 
+                            ondragend='onDragEnd(event)'
+                            ondragenter='dragEnterHandler(event)'
+                            ondragleave='dragLeaveHandler(event)'
+
+
                             class="card rounded" style="width: 18rem;">
                              <!-- start of cards body -->
                               <div class="card-body">
@@ -188,9 +200,13 @@
                         <!-- end of the col section -->
 
                       <div class="col-sm-4"
+                      ondrop='onDrop(event, "In Progress");'
                       ondragover='onDragOver(event);'
-                      ondrop='onDrop(event);'
                       ondragend='onDragEnd(event)'
+
+                      ondragenter='dragEnterHandler(event)'
+                      ondragleave='dragLeaveHandler(event)'
+
                       >
                         <button class="btn btn-warning">
                           In Progress
@@ -200,7 +216,16 @@
                         <div v-for="(item, index) in tickets">
                           <div v-if="item.status == 'In Progress' ">
                             <div
-                            class="card" style="width: 18rem;">
+                            class="card" style="width: 18rem;"
+                            :id="[item.keyIndex, index, 'draggableCard', 'inProgress']"
+                            ondragstart='onDragStart(event)' 
+                            ondragend='onDragEnd(event)'
+                            ondragenter='dragEnterHandler(event)'
+                            ondragleave='dragLeaveHandler(event)'
+
+                            draggable="true"
+                            
+                            >
                               <div class="card-body">
                                 <span class="badge badge-pill badge-warning">
                                   {{ item.status }}
@@ -331,7 +356,6 @@
 
     <!-- /#page-content-wrapper -->
     <!-- /#wrapper -->
-
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script

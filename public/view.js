@@ -64,10 +64,14 @@ let createTicketVue = new Vue({
             } else {
                 this.tickets[index].status = "To Do";
                 writeUserTicketData(tempKeyIndex, this.tickets[index].status)
+                // console.log(this.tickets[index].status)
             }
-            // console.log(this.tickets[index].status)
         },
-        archiveIt: function(index, tempKeyIndex) {
+        dropStatusUpdate: function(index, tempKeyIndex, updatedStatus){
+            this.tickets[index].status = updatedStatus;
+            writeUserTicketData(tempKeyIndex, this.tickets[index].status)
+        },
+            archiveIt: function(index, tempKeyIndex) {
             console.log(index, tempKeyIndex)
             this.archive = true;
             this.tickets[index].status = 'archived';
@@ -119,10 +123,7 @@ function clearVue() {
 
 
 function onDragStart(event) {
-    console.log( event.target.attributes.id.value)
-    let w = event.target.attributes.id.value.split(',')
-    let big = w[0];
-    let me = w[1];
+    console.log('DragStart')
     event
       .dataTransfer
       .setData('text/plain', event.target.id);
@@ -130,41 +131,72 @@ function onDragStart(event) {
     event
       .currentTarget
       .style
-      .backgroundColor = 'BurlyWood';
+      .backgroundColor = 'lightgrey';
 
-    //   ticketCard.updateStatus(me, big);
+      event.currentTarget.style.border = "4px dashed grey";
+  }
+  
+  function onDragOver(event) {
+      console.log('dragover')
+      event.preventDefault();
+    //   event.target.style.backgroundColor = "cornsilk"
   }
 
-function onDrop(event) {
-    const id = event.dataTransfer.getData('text');
-    
-    console.log(event.dataTransfer.getData('text'))
-    let elements = id.split(',');
-    console.log(elements[0], elements[1])
+function onDrop(event, status) {
+    console.log('drop', status)
+    event.preventDefault();
 
-    ticketCard.updateStatus(elements[1], elements[0]);
+    const id = event.dataTransfer.getData('text');
+    console.log('this id:', id)
+    
+    let elements = id.split(',');
+    console.log(elements[0], elements[1], elements[3]);
+    ticketCard.dropStatusUpdate(elements[1], elements[0], status);
     event.target.style.backgroundColor = "white"
 
     event.dataTransfer.clearData();
 }
 
+function dragEnterHandler(event) {
+    console.log("dragEnter");
+    // Change the source element's background color for enter events 
+    event.currentTarget.style.background = "lightgrey";
+   }
+   function dragLeaveHandler(event) {
+    console.log("dragLeave");
+    // Change the source element's border back to white
+    event.currentTarget.style.background = "white";
+   }
+
+   function dragEndHandler(event) {
+    console.log("dragEnd");
+    // Change the target element's background color to visually indicate 
+    // the drag ended.
+    // var el=document.getElementById("target");
+    // el.style.background = "pink";
+   }
+
+   function dragExitHandler(event) {
+    console.log("dragExit");
+    // Change the source element's border back to green to signify a dragexit event
+    event.currentTarget.style.background = "green";
+   }
+
 function onDragEnd(event) {
     console.log("dragend")
     event.target.style.backgroundColor = "white"
+    event.currentTarget.style.border = "none";
 }
 
-function onDragOver(event) {
-    event.preventDefault();
-    console.log(event)
-    event.target.style.backgroundColor = "cornsilk"
-
-}
 
 function dragInit() {
-    const el=document.getElementById('')
-    el.ondragenter = dragenter_handler;
-    el.ondragleave = dragleave_handler;
-    el.ondragend = dragend_handler;
-    el.ondragexit = dragexit_handler;
+    console.log('dragINIT')
+    const el=document.getElementById('dragSource')
+    console.log(el.innerHTML)
+    el.ondragenter = dragEnterHandler;
+    el.ondragleave = dragLeaveHandler;
+    el.ondragend = dragEndHandler;
+    el.ondragexit = dragExitHandler;
 }
+
 
