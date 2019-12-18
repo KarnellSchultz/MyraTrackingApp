@@ -64,10 +64,14 @@ let createTicketVue = new Vue({
             } else {
                 this.tickets[index].status = "To Do";
                 writeUserTicketData(tempKeyIndex, this.tickets[index].status)
+                // console.log(this.tickets[index].status)
             }
-            // console.log(this.tickets[index].status)
         },
-        archiveIt: function(index, tempKeyIndex) {
+        dropStatusUpdate: function(index, tempKeyIndex, updatedStatus){
+            this.tickets[index].status = updatedStatus;
+            writeUserTicketData(tempKeyIndex, this.tickets[index].status)
+        },
+            archiveIt: function(index, tempKeyIndex) {
             console.log(index, tempKeyIndex)
             this.archive = true;
             this.tickets[index].status = 'archived';
@@ -113,4 +117,91 @@ try {
 
 function clearVue() {
     ticketCard.tickets = []
+}
+
+
+
+
+function onDragStart(event) {
+    console.log('DragStart')
+    event
+      .dataTransfer
+      .setData('text/plain', event.target.id);
+  
+    event
+      .currentTarget
+      .style
+      .backgroundColor = 'lightgrey';
+
+      event.currentTarget.style.border = "4px dashed grey";
+  }
+  
+  function onDragOver(event) {
+      console.log('dragover')
+      event.preventDefault();
+    //   event.target.style.backgroundColor = "cornsilk"
+  }
+
+function onDrop(event, status) {
+    console.log('drop', status)
+    event.preventDefault();
+
+    const id = event.dataTransfer.getData('text');
+    console.log('this id:', id)
+    
+    let elements = id.split(',');
+    console.log(elements[0], elements[1], elements[3]);
+    ticketCard.dropStatusUpdate(elements[1], elements[0], status);
+    // event.target.style.backgroundColor = "white"
+
+    event.dataTransfer.clearData();
+}
+
+function dragEnterHandler(event) {
+    console.log("dragEnter", event);
+
+    // Change the source element's background color for enter events 
+    // event.target.style.background = "lightgrey";
+   }
+   function dragLeaveHandler(event) {
+    console.log("dragLeave");
+    // Change the source element's border back to white
+    // event.target.style.background = "white";
+   }
+
+   function dragEndHandler(event) {
+    console.log("dragEnd");
+    event.currentTarget.backgroundColor = 'white'
+    // Change the target element's background color to visually indicate 
+    // the drag ended.
+    // var el=document.getElementById("target");
+   }
+
+   function dragExitHandler(event) {
+    console.log("dragExit");
+    // Change the source element's border back to green to signify a dragexit event
+    event.currentTarget.style.background = "green";
+   }
+
+function onDragEnd(event) {
+    console.log("dragend")
+    event.target.style.backgroundColor = "white"
+    event.currentTarget.style.border = "1px solid lightgrey";
+}
+
+
+function dragInit() {
+    console.log('dragINIT')
+    const el=document.getElementById('dragSource')
+    console.log(el.innerHTML)
+    el.ondragenter = dragEnterHandler;
+    el.ondragleave = dragLeaveHandler;
+    el.ondragend = dragEndHandler;
+    el.ondragexit = dragExitHandler;
+}
+
+
+function mouseMe(event) {
+    console.log("BOOYYY")
+    event.currentTarget.backgroundColor = "cornsilk"
 }

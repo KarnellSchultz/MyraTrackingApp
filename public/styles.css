@@ -31,6 +31,15 @@ body {
   z-index: -1;
   }
 
+  .hoverable {
+    transition: background-color 0.5s ease;
+  background-color: white;
+  }
+  .hoverable:hover {
+    background-color: FloralWhite;
+    cursor: pointer;
+  }
+
   
   @media (min-width: 768px) {
     #sidebar-wrapper {
