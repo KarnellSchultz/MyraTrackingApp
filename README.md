@@ -17,6 +17,7 @@ Login is required so that the tasks you create are only seen by you. This is als
 
 What next for Myra? 
 I'll continue to add features to Myra. Those features include sorting, tags, ect... That said, i'm open to feedback. 
+Adding drag and drop features. List sorting drag and drop features
 
 
 Live app here: https://myratracker.firebaseapp.com/login.html
