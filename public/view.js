@@ -170,7 +170,8 @@ function dragEnterHandler(event) {
 
    function dragEndHandler(event) {
     console.log("dragEnd");
-    event.currentTarget.backgroundColor = 'white'
+    // event.currentTarget.backgroundColor = 'white'
+    // event.currentTarget.backgroundColor = 'inherit'
     // Change the target element's background color to visually indicate 
     // the drag ended.
     // var el=document.getElementById("target");
