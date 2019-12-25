@@ -1,3 +1,4 @@
+
 let createTicketVue = new Vue({
     el: '#createTicketVue',
     data: {
@@ -27,6 +28,8 @@ let createTicketVue = new Vue({
             }
     }
   })
+
+
 
 
   let ticketCard = new Vue({
@@ -133,22 +136,21 @@ function onDragStart(event) {
       .style
       .backgroundColor = 'lightgrey';
 
-      event.currentTarget.style.border = "4px dashed grey";
+
+      event.currentTarget.style.border = "1px dashed grey";
   }
   
   function onDragOver(event) {
       console.log('dragover')
       event.preventDefault();
-    //   event.target.style.backgroundColor = "cornsilk"
+
   }
 
 function onDrop(event, status) {
-    console.log('drop', status)
     event.preventDefault();
-
     const id = event.dataTransfer.getData('text');
-    console.log('this id:', id)
-    
+
+
     let elements = id.split(',');
     console.log(elements[0], elements[1], elements[3]);
     ticketCard.dropStatusUpdate(elements[1], elements[0], status);
@@ -171,7 +173,10 @@ function dragEnterHandler(event) {
 
    function dragEndHandler(event) {
     console.log("dragEnd");
-    event.currentTarget.backgroundColor = 'white'
+
+    // event.currentTarget.backgroundColor = 'white'
+    // event.currentTarget.backgroundColor = 'inherit'
+
     // Change the target element's background color to visually indicate 
     // the drag ended.
     // var el=document.getElementById("target");

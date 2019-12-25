@@ -14,22 +14,23 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous" />
-     <!-- update the version number as needed -->
-     <script src="/__/firebase/7.2.3/firebase-app.js"></script>
-     <!-- include only the Firebase features as you need -->
-     <script src="/__/firebase/7.2.3/firebase-auth.js"></script>
-     <script src="/__/firebase/7.2.3/firebase-database.js"></script>
+      crossorigin="anonymous"
+    />
+    <!-- update the version number as needed -->
+    <script src="/__/firebase/7.2.3/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script src="/__/firebase/7.2.3/firebase-auth.js"></script>
+    <script src="/__/firebase/7.2.3/firebase-database.js"></script>
   </head>
   <body  >
     <div class="d-flex" id="wrapper">
-
-
       <!-- Page Content -->
       <div id="page-content-wrapper">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
           <div class="mr-2" id="profileImg"></div>
-          <div class="mr-3" id="username-heading" class="sidebar-heading">Not logged in </div>
+          <div class="mr-3" id="username-heading" class="sidebar-heading">
+            Not logged in
+          </div>
           <a class="navbar-brand" href="#">Myra Tracker</a>
           <button
             class="navbar-toggler"
@@ -45,13 +46,20 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item active">
-                <a class="nav-link" href="#" onclick=""
-                  > 🐜 <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="#" onclick="">
+                  🐜 <span class="sr-only">(current)</span></a
+                >
               </li>
-             
+
               <li class="nav-item">
-                <a name="Archive" id="" class="btn btn-outline-primary" href="./archive.html" role="button">
-                Archived Tickets
+                <a
+                  name="Archive"
+                  id=""
+                  class="btn btn-outline-primary"
+                  href="./archive.html"
+                  role="button"
+                >
+                  Archived Tickets
                 </a>
               </li>
             </ul>
@@ -64,16 +72,15 @@
                 placeholder="Search"
                 aria-label="Search"
               />
-              <div class=""> 
-              
+              <div class="">
                 <button
-                class="btn btn-outline-danger my-2 my-sm-0"
-                type="submit"
-                onclick="signOut()"
-                >Sign Out
-                </button> 
+                  class="btn btn-outline-danger my-2 my-sm-0"
+                  type="submit"
+                  onclick="signOut()"
+                >
+                  Sign Out
+                </button>
               </div>
-
             </form>
           </div>
         </nav>
@@ -82,7 +89,8 @@
             <div class="jumbotron bg-transparent">
               <h1 class="display-4">👨🏾‍💻Goals</h1>
               <p id="lead-header" class="lead">
-                Create a new task, then track the progress of the task through completion.
+                Create a new task, then track the progress of the task through
+                completion.
               </p>
               <!-- modal button  -->
 
@@ -112,7 +120,8 @@
                   v-on:click="vueTicketCreater"
                   class="btn btn-warning input-group-append"
                   type="button"
-                >Save & Create
+                >
+                  Save & Create
                 </button>
               </div>
 
@@ -122,90 +131,99 @@
                 <div class="container">
                   <div class="jumbotron bg-light">
                     <div class="row align-items-start">
-                      <div class="col-sm-4"
-                      ondrop='onDrop(event, "To Do");'
-                      ondragover='onDragOver(event);'
 
-
-                      ondragenter='dragEnterHandler(event)'
-                      ondragleave='dragLeaveHandler(event)'
-
+                      <div
+                        class="col-sm-4"
+                        ondrop='onDrop(event, "To Do");'
+                        ondragover="onDragOver(event);"
+                        ondragenter="dragEnterHandler(event)"
+                        ondragleave="dragLeaveHandler(event)"
                       >
-                        <button 
-                        class="btn btn-danger">
-                        To Do
-                        <span class=" badge badge-success badge-pill"></span> 
-                      </button>
-                      <div v-for="(item, index) in tickets">
+                        <button class="btn btn-danger">
+                          To Do
+                          <span class=" badge badge-success badge-pill"></span>
+                        </button>
+                        <div v-for="(item, index) in tickets">
                           <div v-if="item.status == 'To Do' ">
+                            <div>
+                              <div
+                                :id="[item.keyIndex, index, 'draggableCard', 'toDo']"
+                                draggable="true"
+                                ondragstart="onDragStart(event)"
+                                ondragend="onDragEnd(event)"
+                                ondragenter="dragEnterHandler(event)"
+                                ondragleave="dragLeaveHandler(event)"
+                                class="card rounded hoverable"
+                                style="width: 18rem;"
+                              >
+                                <!-- start of cards body -->
+                                <div class="card-body">
+                                  <span
+                                    class="badge badge-pill badge-danger btn-group-sm"
+                                  >
+                                    {{ item.status }}
+                                  </span>
+                                  <div class="d-flex justify-content-end">
+                                    <button
+                                      v-on:click="shownToggle(index)"
+                                      class="btn btn-sm btn-outline-info"
+                                    >
+                                      ✏️Edit
 
-                            <div
-                            > 
-                            <div 
-                            :id="[item.keyIndex, index, 'draggableCard', 'toDo']"
-                            draggable="true"
-                            ondragstart='onDragStart(event)' 
-                            ondragend='onDragEnd(event)'
-                            ondragenter='dragEnterHandler(event)'
-                            ondragleave='dragLeaveHandler(event)'
-
-
-                            class="card rounded hoverable" 
-                            style="width: 18rem;">
-                             <!-- start of cards body -->
-                              <div class="card-body">
-                                <span class="badge badge-pill badge-danger btn-group-sm">
-                                   {{ item.status }} 
-                                </span>
-                                  <div class="d-flex justify-content-end" >  
-                                    <button 
-                                    v-on:click="shownToggle(index)" 
-                                    class="btn btn-sm btn-outline-info" >
-                                     ✏️Edit
                                     </button>
                                   </div>
-                                                                
-                                  <span v-if="item.edit">   
+
+                                  <span v-if="item.edit">
                                     <div class="input-group mb-2">
-                                      <input v-model="item.title"
+                                      <input
+                                        v-model="item.title"
                                         class="form-control"
-                                        placeholder="edit me . . . ">
+                                        placeholder="edit me . . . "
+                                      />
                                       <div class="input-group-append">
-                                      <button 
-                                        v-on:click="updateTicketTitleContent(index, item.keyIndex)" 
-                                        class="btn btn-sm btn-outline-primary">
-                                        💾Save
-                                      </button>
+                                        <button
+                                          v-on:click="updateTicketTitleContent(index, item.keyIndex)"
+                                          class="btn btn-sm btn-outline-primary"
+                                        >
+                                          💾Save
+                                        </button>
                                       </div>
                                     </div>
-                                  </span> 
-                                      <div v-else>  
-                                        <h5 class="card-title">{{ item.title }}</h5>
-                                      </div>
+                                  </span>
+                                  <div v-else>
+                                    <h5 class="card-title">{{ item.title }}</h5>
+                                  </div>
 
-                                <div class="btn-group" role="group" aria-label="group of buttons to regress or progress">
-                                <button
-                                  v-on:click="updateStatus(index, item.keyIndex)"
-                                  class="btn btn-sm btn-outline-warning" >
-                                  In Progress 👉🏾
-                                </button>
+                                  <div
+                                    class="btn-group"
+                                    role="group"
+                                    aria-label="group of buttons to regress or progress"
+                                  >
+                                    <button
+                                      v-on:click="updateStatus(index, item.keyIndex)"
+                                      class="btn btn-sm btn-outline-warning"
+                                    >
+                                      In Progress 👉🏾
+                                    </button>
+                                  </div>
                                 </div>
-                            </div>
-                            <!-- end of the cards body content -->
+                                <!-- end of the cards body content -->
                               </div>
                             </div>
 
                             </div>
                           </div>
                         </div>
-                        <!-- end of the col section -->
 
-                      <div class="col-sm-4"
-                      ondrop='onDrop(event, "In Progress");'
-                      ondragover='onDragOver(event);'
+                      </div>
+                      <!-- end of the col section -->
 
-                      ondragenter='dragEnterHandler(event)'
-                      ondragleave='dragLeaveHandler(event)'
+                      <div
+                        class="col-sm-4"
+                        ondrop='onDrop(event, "In Progress");'
+                        ondragover="onDragOver(event);"
+                        ondragenter="dragEnterHandler(event)"
+                        ondragleave="dragLeaveHandler(event)"
 
                       >
                         <button class="btn btn-warning">
@@ -216,60 +234,71 @@
                         <div v-for="(item, index) in tickets">
                           <div v-if="item.status == 'In Progress' ">
                             <div
-                            class="card rounded hoverable" 
-                            style="width: 18rem;"
-                            :id="[item.keyIndex, index, 'draggableCard', 'inProgress']"
-                            ondragstart='onDragStart(event)' 
-                            ondragend='onDragEnd(event)'
-                            ondragenter='dragEnterHandler(event)'
-                            ondragleave='dragLeaveHandler(event)'
 
-                            draggable="true"
-                            
+                              class="card rounded hoverable"
+                              style="width: 18rem;"
+                              :id="[item.keyIndex, index, 'draggableCard', 'inProgress']"
+                              ondragstart="onDragStart(event)"
+                              ondragend="onDragEnd(event)"
+                              ondragenter="dragEnterHandler(event)"
+                              ondragleave="dragLeaveHandler(event)"
+                              draggable="true"
+
                             >
                               <div class="card-body">
                                 <span class="badge badge-pill badge-warning">
                                   {{ item.status }}
                                 </span>
 
-                                <div class="d-flex justify-content-end" >  
-                                    <button
-                                    v-on:click="shownToggle(index)" 
-                                    class="btn btn-sm btn-outline-info" >
-                                     ✏️Edit
-                                    </button>
-                                  </div>
 
-                                  <span v-if="item.edit">   
-                                      <div class="input-group mb-2">
-                                        <input v-model="item.title"
-                                          class="form-control"
-                                          placeholder="edit me . . . ">
-                                        <div class="input-group-append">
-                                        <button 
-                                          v-on:click="updateTicketTitleContent(index, item.keyIndex)" 
-                                          class="btn btn-sm btn-outline-primary">
-                                          💾Save
-                                        </button>
-                                        </div>
-                                      </div>
-                                    </span> 
+                                <div class="d-flex justify-content-end">
+                                  <button
+                                    v-on:click="shownToggle(index)"
+                                    class="btn btn-sm btn-outline-info"
+                                  >
+                                    ✏️Edit
+                                  </button>
+                                </div>
 
-                                    <div v-else>  
-                                        <h5 class="card-title">{{ item.title }}</h5>
+                                <span v-if="item.edit">
+                                  <div class="input-group mb-2">
+                                    <input
+                                      v-model="item.title"
+                                      class="form-control"
+                                      placeholder="edit me . . . "
+                                    />
+                                    <div class="input-group-append">
+                                      <button
+                                        v-on:click="updateTicketTitleContent(index, item.keyIndex)"
+                                        class="btn btn-sm btn-outline-primary"
+                                      >
+                                        💾Save
+                                      </button>
                                     </div>
+                                  </div>
+                                </span>
 
+                                <div v-else>
+                                  <h5 class="card-title">{{ item.title }}</h5>
+                                </div>
 
-                                <div class="btn-group" role="group" aria-label="group of buttons to regress or progress">
-                                <button v-on:click="regressStatus(index, item.keyIndex)"
-                                class="btn btn-sm btn-outline-secondary">
-                                👈🏾Regress
-                              </button>
-                                <button
-                                  v-on:click="updateStatus(index, item.keyIndex)"
-                                  class="btn btn-sm btn-outline-success"> 
-                                  Done 👉🏾
-                                </button>
+                                <div
+                                  class="btn-group"
+                                  role="group"
+                                  aria-label="group of buttons to regress or progress"
+                                >
+                                  <button
+                                    v-on:click="regressStatus(index, item.keyIndex)"
+                                    class="btn btn-sm btn-outline-secondary"
+                                  >
+                                    👈🏾Regress
+                                  </button>
+                                  <button
+                                    v-on:click="updateStatus(index, item.keyIndex)"
+                                    class="btn btn-sm btn-outline-success"
+                                  >
+                                    Done 👉🏾
+                                  </button>
                                 </div>
                               </div>
                             </div>
@@ -278,74 +307,85 @@
                         </div>
                       </div>
 
-                      <div class="col-sm-4"
-                      ondrop='onDrop(event, "Done");'
-                      ondragover='onDragOver(event);'
 
-                      ondragenter='dragEnterHandler(event)'
-                      ondragleave='dragLeaveHandler(event)'
+                      <div
+                        class="col-sm-4"
+                        ondrop='onDrop(event, "Done");'
+                        ondragover="onDragOver(event);"
+                        ondragenter="dragEnterHandler(event)"
+                        ondragleave="dragLeaveHandler(event)"
+
                       >
                         <button class="btn btn-success">
                           Done
                           <span class=" badge badge-info"></span>
                         </button>
                         <div v-for="(item, index) in tickets">
-                          <div v-if="item.status == 'Done' ">
-                            <div 
-                            class="card rounded hoverable" 
-                            style="width: 18rem;"
-                            :id="[item.keyIndex, index, 'draggableCard', 'Done']"
-                            ondragstart='onDragStart(event)' 
-                            ondragend='onDragEnd(event)'
-                            ondragenter='dragEnterHandler(event)'
-                            ondragleave='dragLeaveHandler(event)'
 
-                            draggable="true"
+                          <div v-if="item.status == 'Done'">
+                            <div
+                              class="card rounded hoverable"
+                              style="width: 18rem;"
+                              :id="[item.keyIndex, index, 'draggableCard', 'Done']"
+                              ondragstart="onDragStart(event)"
+                              ondragend="onDragEnd(event)"
+                              ondragenter="dragEnterHandler(event)"
+                              ondragleave="dragLeaveHandler(event)"
+                              draggable="true"
                             >
                               <div class="card-body">
                                 <span class="badge badge-pill badge-success">
-                                  {{ item.status }}
+                                  {{ item.status }} 
                                 </span>
 
-
-                                <div class="d-flex justify-content-end" >  
-                                    <button 
-                                      v-on:click="shownToggle(index)" 
-                                      class="btn btn-sm btn-outline-info" >
-                                     ✏️Edit
-                                    </button>
-                                  </div>
-
-                                  <span v-if="item.edit == true ">   
-                                      <div class="input-group mb-2">
-                                        <input v-model="item.title"
-                                          class="form-control"
-                                          placeholder="edit me . . . ">
-                                        <div class="input-group-append">
-                                        <button 
-                                          v-on:click="updateTicketTitleContent(index, item.keyIndex)" 
-                                          class="btn btn-sm btn-outline-primary">
-                                          💾Save
-                                        </button>
-                                        </div>
-                                      </div>
-                                    </span> 
-
-                                    <div v-else>  
-                                        <h5 class="card-title">{{ item.title }}</h5>
-                                    </div>
-
-                                <div class="btn-group" role="group" aria-label="group of buttons to regress or progress"> 
-
-                                <button v-on:click="regressStatus(index, item.keyIndex)"
-                                class="btn btn-sm btn-outline-secondary">
-                                👈🏾Regress
+                                <div class="d-flex justify-content-end">
+                                  <button
+                                    v-on:click="shownToggle(index)"
+                                    class="btn btn-sm btn-outline-info"
+                                  >
+                                    ✏️Edit
                                   </button>
-                                <button
-                                  v-on:click="archiveIt(index, item.keyIndex)"
-                                  class="btn btn-sm btn-outline-info">
-                                   Archive 🗂
-                                </button>
+                                </div>
+
+                                <span v-if="item.edit == true ">
+                                  <div class="input-group mb-2">
+                                    <input
+                                      v-model="item.title"
+                                      class="form-control"
+                                      placeholder="edit me . . . "
+                                    />
+                                    <div class="input-group-append">
+                                      <button
+                                        v-on:click="updateTicketTitleContent(index, item.keyIndex)"
+                                        class="btn btn-sm btn-outline-primary"
+                                      >
+                                        💾Save
+                                      </button>
+                                    </div>
+                                  </div>
+                                </span>
+
+                                <div v-else>
+                                  <h5 class="card-title">{{ item.title }}</h5>
+                                </div>
+
+                                <div
+                                  class="btn-group"
+                                  role="group"
+                                  aria-label="group of buttons to regress or progress"
+                                >
+                                  <button
+                                    v-on:click="regressStatus(index, item.keyIndex)"
+                                    class="btn btn-sm btn-outline-secondary"
+                                  >
+                                    👈🏾Regress
+                                  </button>
+                                  <button
+                                    v-on:click="archiveIt(index, item.keyIndex)"
+                                    class="btn btn-sm btn-outline-info"
+                                  >
+                                    Archive 🗂
+                                  </button>
                                 </div>
                               </div>
                             </div>
@@ -358,9 +398,6 @@
 
                 <!-- end of Vue el -->
               </div>
-
-
-
             </div>
           </div>
         </div>
@@ -390,8 +427,7 @@
     <!-- vue js script for testing -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <!-- production version, optimized for size and speed -->
-<!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
-
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
 
     <!-- <script defer src="/__/firebase/7.2.3/firebase-messaging.js"></script> -->
     <script defer src="/__/firebase/7.2.3/firebase-storage.js"></script>
@@ -401,7 +437,5 @@
     <script defer src="app.js"></script>
     <script defer src="view.js"></script>
     <script defer src="auth.js"></script>
-
-
   </body>
 </html>

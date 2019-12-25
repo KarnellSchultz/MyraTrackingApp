@@ -80,7 +80,7 @@ function gotData(data) {
     // console.log(userSpecificTickets)
     addNewTicketToVue();
   } catch (error) {
-    console.log("No user logged in. Log in to use this app");
+    console.log(error, "No user logged in. Log in to use this app");
   }
 }
 
