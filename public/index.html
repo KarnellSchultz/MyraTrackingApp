@@ -22,7 +22,7 @@
     <script src="/__/firebase/7.2.3/firebase-auth.js"></script>
     <script src="/__/firebase/7.2.3/firebase-database.js"></script>
   </head>
-  <body>
+  <body  >
     <div class="d-flex" id="wrapper">
       <!-- Page Content -->
       <div id="page-content-wrapper">
@@ -131,6 +131,7 @@
                 <div class="container">
                   <div class="jumbotron bg-light">
                     <div class="row align-items-start">
+
                       <div
                         class="col-sm-4"
                         ondrop='onDrop(event, "To Do");'
@@ -168,6 +169,7 @@
                                       class="btn btn-sm btn-outline-info"
                                     >
                                       ✏️Edit
+
                                     </button>
                                   </div>
 
@@ -208,8 +210,11 @@
                                 <!-- end of the cards body content -->
                               </div>
                             </div>
+
+                            </div>
                           </div>
                         </div>
+
                       </div>
                       <!-- end of the col section -->
 
@@ -219,6 +224,7 @@
                         ondragover="onDragOver(event);"
                         ondragenter="dragEnterHandler(event)"
                         ondragleave="dragLeaveHandler(event)"
+
                       >
                         <button class="btn btn-warning">
                           In Progress
@@ -228,6 +234,7 @@
                         <div v-for="(item, index) in tickets">
                           <div v-if="item.status == 'In Progress' ">
                             <div
+
                               class="card rounded hoverable"
                               style="width: 18rem;"
                               :id="[item.keyIndex, index, 'draggableCard', 'inProgress']"
@@ -236,11 +243,13 @@
                               ondragenter="dragEnterHandler(event)"
                               ondragleave="dragLeaveHandler(event)"
                               draggable="true"
+
                             >
                               <div class="card-body">
                                 <span class="badge badge-pill badge-warning">
                                   {{ item.status }}
                                 </span>
+
 
                                 <div class="d-flex justify-content-end">
                                   <button
@@ -293,9 +302,11 @@
                                 </div>
                               </div>
                             </div>
+                    
                           </div>
                         </div>
                       </div>
+
 
                       <div
                         class="col-sm-4"
@@ -303,12 +314,14 @@
                         ondragover="onDragOver(event);"
                         ondragenter="dragEnterHandler(event)"
                         ondragleave="dragLeaveHandler(event)"
+
                       >
                         <button class="btn btn-success">
                           Done
                           <span class=" badge badge-info"></span>
                         </button>
                         <div v-for="(item, index) in tickets">
+
                           <div v-if="item.status == 'Done'">
                             <div
                               class="card rounded hoverable"

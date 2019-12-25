@@ -136,17 +136,20 @@ function onDragStart(event) {
       .style
       .backgroundColor = 'lightgrey';
 
+
       event.currentTarget.style.border = "1px dashed grey";
   }
   
   function onDragOver(event) {
       console.log('dragover')
       event.preventDefault();
+
   }
 
 function onDrop(event, status) {
     event.preventDefault();
     const id = event.dataTransfer.getData('text');
+
 
     let elements = id.split(',');
     console.log(elements[0], elements[1], elements[3]);
@@ -170,8 +173,10 @@ function dragEnterHandler(event) {
 
    function dragEndHandler(event) {
     console.log("dragEnd");
+
     // event.currentTarget.backgroundColor = 'white'
     // event.currentTarget.backgroundColor = 'inherit'
+
     // Change the target element's background color to visually indicate 
     // the drag ended.
     // var el=document.getElementById("target");
