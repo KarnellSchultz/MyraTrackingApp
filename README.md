@@ -1,5 +1,7 @@
 # MyraTrackingApp
 
+## <https://myratracker.firebaseapp.com/login.html>
+
 -Progress tracking application. 
 -Hosted via firebase
 -logins with Google
@@ -20,7 +22,7 @@ I'll continue to add features to Myra. Those features include sorting, tags, ect
 Adding drag and drop features. List sorting drag and drop features
 
 
-Live app here: https://myratracker.firebaseapp.com/login.html
+Live app here: <https://myratracker.firebaseapp.com/login.html>
 
 
 ![](https://media.giphy.com/media/XFiuVjBamFRHy7IvGw/giphy.gif)
